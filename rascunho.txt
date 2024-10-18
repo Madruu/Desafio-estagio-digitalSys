@@ -1,0 +1,32 @@
+class CriaCurriculo(View):
+    def get_curriculos(self, request):
+        personal_data_form = FormularioPersonalData()
+        contact_form = FormularioContato()
+        professional_experience_form = FormularioProfessionalExperience()
+        academic_formation_form = FormularioAcademicFormation()
+        return render(request, 'send_application.html', {
+            'personal_data_form': personal_data_form,
+            'contact_form': contact_form,
+            'professional_experience_form': professional_experience_form,
+            'academic_formation_form': academic_formation_form,
+        })
+    
+    def post_curriculos(self, request):
+        personal_data_form = FormularioPersonalData(request.POST)
+        contact_form = FormularioContato(request.POST)
+        professional_experience_form = FormularioProfessionalExperience(request.POST)
+        academic_formation_form = FormularioAcademicFormation(request.POST)
+        
+        if personal_data_form.is_valid() and contact_form.is_valid() and professional_experience_form.is_valid() and academic_formation_form.is_valid():
+            personal_data_form.save()
+            contact_form.save()
+            professional_experience_form.save()
+            academic_formation_form.save()
+            return HttpResponse("Formulário enviado com sucesso!")
+        
+        return render(request, 'send_application.html', {
+            'personal_data_form': personal_data_form,
+            'contact_form': contact_form,
+            'professional_experience_form': professional_experience_form,
+            'academic_formation_form': academic_formation_form,
+        })

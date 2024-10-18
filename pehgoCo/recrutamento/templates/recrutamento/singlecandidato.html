@@ -1,0 +1,11 @@
+{% if specific_candidate %}
+    <h1>Searched candidate:</h1>
+    <ul>
+        <li>{{ specific_candidate.first_name }}</li>
+        <li>{{ specific_candidate.last_name }}</li>
+        <li>{{ specific_candidate.birth_date }}</li>
+        <li>{{ specific_candidate.personal_doc }}</li>
+    </ul>
+    {% else %}
+        <p>This candidate doesnt exist.</p>
+{% endif %}

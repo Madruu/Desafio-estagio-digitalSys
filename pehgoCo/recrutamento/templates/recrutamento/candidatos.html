@@ -1,0 +1,15 @@
+<!--Try to find the candidates-->
+{% if all_candidates %}
+    <h1>All candidates</h1>
+    <ul>
+        {% for candidate in all_candidates %}
+            <li>{{ candidate.first_name }}</li>
+            <li>{{ candidate.last_name }}</li>
+            <li>{{ candidate.birth_date }}</li>
+            <li>{{ candidate.personal_doc }}</li><br>
+            <br>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No candidates available.</p>
+{% endif %}
