@@ -23,7 +23,7 @@ class Contact(models.Model):
     cep = models.CharField(max_length=8)
     complemento = models.CharField(max_length=200)
     def __str__(self):
-        return f'{self.email} {self.phone_number} {self.rua} {self.number} {self.bairro} {self.cidade} {self.estado} {self.cep} {self.complemento}'
+        return f'{self.email} {self.phone_number} {self.rua} {self.bairro} {self.cidade} {self.estado} {self.cep} {self.complemento}'
     
 class ProfessionalExperience(models.Model):
     cargo = models.CharField(max_length=200)
@@ -39,3 +39,13 @@ class AcademicFormation(models.Model):
     stage = models.IntegerField()
     def __str__(self):
         return f'{self.institution} {self.curse} {self.stage}'
+    
+class Curriculo(models.Model):
+    curr_personal_data = models.OneToOneField(PersonalData, on_delete=models.CASCADE)
+    curr_contact = models.OneToOneField(Contact, on_delete=models.CASCADE)
+    curr_professional_experience = models.OneToOneField(ProfessionalExperience, on_delete=models.CASCADE)
+    curr_academic_formation = models.OneToOneField(AcademicFormation, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"Curriculo de {self.personal_data.first_name}"
+    

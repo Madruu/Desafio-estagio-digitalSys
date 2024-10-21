@@ -3,6 +3,7 @@
     <h1>All candidates</h1>
     <ul>
         {% for candidate in all_candidates %}
+            <h2>Informações pessoais:</h2>
             <li>{{ candidate.first_name }}</li>
             <li>{{ candidate.last_name }}</li>
             <li>{{ candidate.birth_date }}</li>

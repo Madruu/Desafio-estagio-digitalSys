@@ -1,0 +1,44 @@
+{% if specific_curriculum %}
+    <h1>Searched Curriculum:</h1>
+    <h1>Curriculo de {{ specific_curriculum.curr_personal_data.first_name }} {{ specific_curriculum.curr_personal_data.last_name }}:</h1>
+
+        <h2>Dados pessoais:</h2>
+        <ul>
+            <li>Nome: {{ specific_curriculum.curr_personal_data.first_name }} {{ specific_curriculum.curr_personal_data.last_name }}</li>
+            <li>Data de nascimento: {{ specific_curriculum.curr_personal_data.birth_date }}</li>
+            <li>CPF: {{ specific_curriculum.curr_personal_data.personal_doc }}</li>
+        </ul>
+    
+        <h2>Informações de contato:</h2>
+        <ul>
+            <li>E-mail: {{ specific_curriculum.curr_contact.email }}</li>
+            <li>Número de telefone: {{ specific_curriculum.curr_contact.phone_number }}</li>
+            <h3>Endereço:</h3>
+            <ul>
+                <li>Rua: {{ specific_curriculum.curr_contact.rua }}</li>
+                <li>Bairro: {{ specific_curriculum.curr_contact.bairro }}</li>
+                <li>Cidade: {{ specific_curriculum.curr_contact.cidade}}</li>
+                <li>Estado: {{ specific_curriculum.curr_contact.estado }}</li>
+                <li>CEP: {{ specific_curriculum.curr_contact.cep }}</li>
+                <li>Complemento: {{ specific_curriculum.curr_contact.complemento}}</li>
+            </ul>
+        </ul>
+    
+        <h2>Experiência profissional:</h2>
+        <ul>
+            <li>Cargo: {{ specific_curriculum.curr_professional_experience.cargo }}</li>
+            <li>Empresa: {{ specific_curriculum.curr_professional_experience.empresa }}</li>
+            <li>Período: {{ specific_curriculum.curr_professional_experience.periodo }}</li>
+            <li>Descrição: {{ specific_curriculum.curr_professional_experience.description }}</li>
+        </ul>
+    
+        <h2>Formação acadêmica:</h2>
+        <ul>
+            <li>Instituição: {{ specific_curriculum.curr_academic_formation.institution }}</li>
+            <li>Curso: {{ specific_curriculum.curr_academic_formation.curse }}</li>
+            <li>Período: {{ specific_curriculum.curr_academic_formation.stage}}</li>
+        </ul>
+
+    {% else %}
+        <p>This curriculum doesnt exist.</p>
+{% endif %}

@@ -1,0 +1,9 @@
+{% if curriculum_to_delete %}
+<h1>Confirmar Exclusão</h1>
+    <p>Você tem certeza que deseja excluir o currículo de {{ curriculum_to_delete.curr_personal_data.first_name }} {{ curriculum_to_delete.curr_personal_data.last_name }}?</p>
+    
+    <form action="{% url 'delete_curriculum' curriculum_to_delete.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Sim, deletar</button>
+    </form>
+{%endif%}

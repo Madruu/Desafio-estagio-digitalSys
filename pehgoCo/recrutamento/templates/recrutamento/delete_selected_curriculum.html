@@ -1,0 +1,6 @@
+{% if curriculum_to_delete %}
+<h1>Excluir curriculo de {{ curriculum_to_delete.curr_personal_data.first_name }} {{ curriculum_to_delete.curr_personal_data.last_name }}?</h1>
+<button type="submit">Sim</button>
+{% else %}
+<p>Este curriculo não existe ou já foi excluído.</p>
+{% endif %}

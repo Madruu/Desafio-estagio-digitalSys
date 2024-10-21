@@ -1,0 +1,58 @@
+{% if curriculos %}
+
+    <h1>Curriculos:</h1>
+    <ul>
+        {% for curriculo in curriculos %}
+        <h1>Curriculo de {{ curriculo.curr_personal_data.first_name }} {{ curriculo.curr_personal_data.last_name }}:</h1>
+
+        <h2>Dados pessoais:</h2>
+        <ul>
+            <li>Nome: {{ curriculo.curr_personal_data.first_name }} {{ curriculo.curr_personal_data.last_name }}</li>
+            <li>Data de nascimento: {{ curriculo.curr_personal_data.birth_date }}</li>
+            <li>CPF: {{ curriculo.curr_personal_data.personal_doc }}</li>
+        </ul>
+    
+        <h2>Informações de contato:</h2>
+        <ul>
+            <li>E-mail: {{ curriculo.curr_contact.email }}</li>
+            <li>Número de telefone: {{ curriculo.curr_contact.phone_number }}</li>
+            <h3>Endereço:</h3>
+            <ul>
+                <li>Rua: {{ curriculo.curr_contact.rua }}</li>
+                <li>Bairro: {{ curriculo.curr_contact.bairro }}</li>
+                <li>Cidade: {{ curriculo.curr_contact.cidade}}</li>
+                <li>Estado: {{ curriculo.curr_contact.estado }}</li>
+                <li>CEP: {{ curriculo.curr_contact.cep }}</li>
+                <li>Complemento: {{ curriculo.curr_contact.complemento}}</li>
+            </ul>
+        </ul>
+    
+        <h2>Experiência profissional:</h2>
+        <ul>
+            <li>Cargo: {{ curriculo.curr_professional_experience.cargo }}</li>
+            <li>Empresa: {{ curriculo.curr_professional_experience.empresa }}</li>
+            <li>Período: {{ curriculo.curr_professional_experience.periodo }}</li>
+            <li>Descrição: {{ curriculo.curr_professional_experience.description }}</li>
+        </ul>
+    
+        <h2>Formação acadêmica:</h2>
+        <ul>
+            <li>Instituição: {{ curriculo.curr_academic_formation.institution }}</li>
+            <li>Curso: {{ curriculo.curr_academic_formation.curse }}</li>
+            <li>Período: {{ curriculo.curr_academic_formation.stage}}</li>
+        </ul>
+
+        <form action="{% url 'update_curriculum' curriculo.id %}" method='GET' style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Editar</button>
+        </form>
+
+        <form action="{% url 'confirm_delete_curriculum' curriculo.id %}" method="GET" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Deletar</button>
+        </form>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No corriculums available.</p>
+{% endif %}
