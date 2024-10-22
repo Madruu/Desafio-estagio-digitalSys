@@ -15,5 +15,5 @@ urlpatterns = [
     path("curriculum/<int:curriculum_id>", views.get_single_curriculum, name="get_single_curriculum"),
     path("curriculum/delete/<int:curriculum_id>", views.delete_curriculum, name="delete_curriculum"),
     path("curriculum/delete/confirm/<int:curriculum_id>", views.confirm_delete_curriculum, name="confirm_delete_curriculum"),
-    path("curriculum/edit/<int:curriculum_id>", views.edit_curriculum, name="edit_curriculum"),
+    path("curriculum/edit/<int:curriculum_id>", views.update_curriculum, name="update_curriculum"),
 ]

@@ -38,15 +38,47 @@ def delete_candidate(request, candidate_id):
 
 def post_curriculos(request):
     if request.method == 'POST':
-        curriculum_data = CurriculumForm(request.POST)
-        if curriculum_data.is_valid():
-            curriculum_data.save()
-            return HttpResponse("Formulario cadastrado com sucesso!")
+        personal_data_form = FormularioPersonalData(request.POST)
+        contact_form = FormularioContato(request.POST)
+        professional_experience_form = FormularioProfessionalExperience(request.POST)
+        academic_formation_form = FormularioAcademicFormation(request.POST)
+
+        if (personal_data_form.is_valid() and contact_form.is_valid() and 
+                professional_experience_form.is_valid() and academic_formation_form.is_valid()):
+            
+            # Salvar dados pessoais
+            personal_data = personal_data_form.save()
+            # Salvar contato
+            contact = contact_form.save()
+            # Salvar experiência profissional
+            professional_experience = professional_experience_form.save()
+            # Salvar formação acadêmica
+            academic_formation = academic_formation_form.save()
+
+            # Criar o currículo associando todos os dados salvos
+            curriculo = Curriculo.objects.create(
+                curr_personal_data=personal_data,
+                curr_contact=contact,
+                curr_professional_experience=professional_experience,
+                curr_academic_formation=academic_formation
+            )
+
+            #return redirect('get_all_curriculums')  # Redirecionar após sucesso
+            return HttpResponse("Currículo criado com sucesso!")
+
     else:
-        curriculum_data = CurriculumForm()
+        personal_data_form = FormularioPersonalData()
+        contact_form = FormularioContato()
+        professional_experience_form = FormularioProfessionalExperience()
+        academic_formation_form = FormularioAcademicFormation()
 
-    return render(request, 'recrutamento/send_application.html', {'curriculum_data': curriculum_data})
-
+    return render(request, 'recrutamento/send_application.html', {
+        'personal_data_form': personal_data_form,
+        'contact_form': contact_form,
+        'professional_experience_form': professional_experience_form,
+        'academic_formation_form': academic_formation_form,
+    })
+    
 def get_single_curriculum(request, curriculum_id):
     try:
         specific_curriculum = Curriculo.objects.get(pk=curriculum_id)
@@ -64,20 +96,13 @@ def get_all_curriculums(request):
     context = {
         'curriculos': curriculos,
     }
-    template = loader.get_template('recrutamento/all_curriculums.html')
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recrutamento/all_curriculums.html', context)
 
 def confirm_delete_curriculum(request, curriculum_id):
-    #curriculum_to_delete = get_object_or_404(Curriculo, pk=curriculum_id)
-
-#    if request.method == 'POST':
-#       curriculum_to_delete.delete()
-#       return redirect('delete_curriculum')  # Redirecione para uma página de sucesso ou lista de currículos
     curriculum_to_delete = get_object_or_404(Curriculo, pk=curriculum_id)
 
     return render(request, 'recrutamento/confirm_delete.html', {'curriculum_to_delete': curriculum_to_delete})    
-    #return render(request, 'recrutamento/confirm_delete.html', {'curriculum': curriculum_to_delete})
-
+   
 def delete_curriculum(request, curriculum_id):
 
     if request.method == 'POST':
@@ -85,11 +110,49 @@ def delete_curriculum(request, curriculum_id):
         curriculum_to_delete.delete()
         return redirect('get_all_curriculums')
     
-#def update_curriculum(request, curriculum_id):
-#    curriculum = get_object_or_404(Curriculo, pk=curriculum_id)
-#    form = CurriculumForm(request.POST or None, instance=curriculum)
-#    if form.is_valid():
-#        form.save()
-#        return redirect('get_all_curriculums')
-#    return render(request, 'recrutamento/send_application.html', {'form': form})
+    
+def update_curriculum(request, curriculum_id):
+    curriculo = get_object_or_404(Curriculo, pk=curriculum_id)
 
+    if request.method == 'POST':
+        personal_data_form = FormularioPersonalData(request.POST, instance=curriculo.curr_personal_data)
+        contact_form = FormularioContato(request.POST, instance=curriculo.curr_contact)
+        professional_experience_form = FormularioProfessionalExperience(request.POST, instance=curriculo.curr_professional_experience)
+        academic_formation_form = FormularioAcademicFormation(request.POST, instance=curriculo.curr_academic_formation)
+
+        if (personal_data_form.is_valid() and contact_form.is_valid() and 
+                professional_experience_form.is_valid() and academic_formation_form.is_valid()):
+            
+            personal_data_form.save()
+            contact_form.save()
+            professional_experience_form.save()
+            academic_formation_form.save()
+            
+            # Redirecionar após a edição bem-sucedida
+            return redirect('get_all_curriculums')  # Substitua 'success_page' pela URL desejada
+
+    else:
+        personal_data_form = FormularioPersonalData(instance=curriculo.curr_personal_data)
+        contact_form = FormularioContato(instance=curriculo.curr_contact)
+        professional_experience_form = FormularioProfessionalExperience(instance=curriculo.curr_professional_experience)
+        academic_formation_form = FormularioAcademicFormation(instance=curriculo.curr_academic_formation)
+
+    return render(request, 'recrutamento/edit_curriculum.html', {
+        'personal_data_form': personal_data_form,
+        'contact_form': contact_form,
+        'professional_experience_form': professional_experience_form,
+        'academic_formation_form': academic_formation_form,
+        'curriculo': curriculo,  # Adicione para usar na exibição se necessário
+    })
+#def update_curriculum(request, curriculum_id):
+#    curriculo = get_object_or_404(Curriculo, id=curriculum_id)
+
+#    if request.method == 'POST':
+#        form = CurriculumForm(request.POST)
+#        if form.is_valid():
+#            form.save()
+#            return redirect('get_all_curriculums')  # Redirecione para onde quiser após salvar
+#    else:
+#        form = CurriculumForm()
+
+#    return render(request, 'edit_curriculum.html', {'form': form, 'curriculo': curriculo})

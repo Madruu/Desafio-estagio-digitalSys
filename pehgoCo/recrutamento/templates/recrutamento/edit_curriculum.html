@@ -1,0 +1,17 @@
+<form method="post">
+    {% csrf_token %}
+    
+    <h2>Dados Pessoais</h2>
+    {{ personal_data_form.as_p }}
+
+    <h2>Contato</h2>
+    {{ contact_form.as_p }}
+
+    <h2>Experiência Profissional</h2>
+    {{ professional_experience_form.as_p }}
+
+    <h2>Formação Acadêmica</h2>
+    {{ academic_formation_form.as_p }}
+
+    <button type="submit">Salvar Alterações</button>
+</form>

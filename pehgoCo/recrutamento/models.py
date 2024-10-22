@@ -30,7 +30,7 @@ class ProfessionalExperience(models.Model):
     empresa = models.CharField(max_length=200)
     periodo = models.IntegerField()
     description = models.CharField(max_length=200)
-    def __str__(self):
+    def __str__(self):  
         return f'{self.cargo} {self.empresa} {self.periodo} {self.description}'
 
 class AcademicFormation(models.Model):
@@ -47,5 +47,5 @@ class Curriculo(models.Model):
     curr_academic_formation = models.OneToOneField(AcademicFormation, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"Curriculo de {self.personal_data.first_name}"
+        return f"Curriculo de {self.curr_personal_data.first_name}"
     

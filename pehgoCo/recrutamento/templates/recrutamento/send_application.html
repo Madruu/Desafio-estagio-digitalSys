@@ -1,17 +1,16 @@
-<!--Send application-->
-<form method='POST'>
+<form method="post">
     {% csrf_token %}
-    <h2>Dados pessoais:</h2>
-    {{ curriculum_data.personal_data.as_p }}
+    <h2>Dados Pessoais</h2>
+    {{ personal_data_form.as_p }}
 
-    <h2>Informações de contato:</h2>
-    {{ curriculum_data.contact.as_p }}
+    <h2>Contato</h2>
+    {{ contact_form.as_p }}
 
-    <h2>Experiência profissional:</h2>
-    {{ curriculum_data.professional_experience.as_p }}
+    <h2>Experiência Profissional</h2>
+    {{ professional_experience_form.as_p }}
 
-    <h2>Formação acadêmica:</h2>
-    {{ curriculum_data.academic_formation.as_p }}
+    <h2>Formação Acadêmica</h2>
+    {{ academic_formation_form.as_p }}
 
-    <button type="submit">Save</button>
+    <button type="submit">Cadastrar Currículo</button>
 </form>
