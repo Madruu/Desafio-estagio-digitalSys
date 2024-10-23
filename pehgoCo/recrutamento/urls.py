@@ -21,6 +21,15 @@ urlpatterns = [
     path("professional_experience/<int:professional_experience_id>", views.single_professional_experience, name="single_professional_experience"),
     path("professional_experience/add/" , views.post_professional_experience, name="post_professional_experience"),
     path("professional_experience/edit/<int:professional_experience_id>" , views.update_professional_experience, name="update_professional_experience"),
+    path("professional_experience/delete/<int:professional_experience_id>", views.delete_professional_experience, name="delete_professional_experience"),
+    path("professional_experience/delete/confirm/<int:professional_experience_id>", views.confirm_delete_professional_experience, name="confirm_delete_professional_experience"),
+    #Formação academica
+    path("academic_formations/", views.academic_formations, name="academic_formations"),
+    path("academic_formation/<int:academic_formation_id>", views.single_academic_formation, name="single_academic_formation"),
+    path("academic_formation/add/", views.post_academic_formation, name="post_academic_formation"),
+    path("academic_formation/edit/<int:academic_formation_id>", views.update_academic_formation, name="update_academic_formation"),
+    path("academic_formation/delete/<int:academic_formation_id>", views.delete_academic_formation, name="delete_academic_formation"),
+    path("academic_formation/delete/confirm/<int:academic_formation_id>", views.confirm_delete_academic_formation, name="confirm_delete_academic_formation"),
     #Curriculos
     path("send/", views.post_curriculos, name="post_curriculos"),
     path("curriculums/", views.get_all_curriculums, name="get_all_curriculums"),

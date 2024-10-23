@@ -134,7 +134,62 @@ def update_professional_experience(request, professional_experience_id):
         form = FormularioProfessionalExperience(instance=professional_experience)
     return render(request, "recrutamento/professional_experiences/edit_professional_experience.html", {'form': form, 'professional_experience': professional_experience})
 
+def confirm_delete_professional_experience(request, professional_experience_id):
+    professional_experience_to_delete = get_object_or_404(ProfessionalExperience, pk=professional_experience_id)
 
+    return render(request, 'recrutamento/professional_experiences/confirm_delete_professional_experience.html', {'professional_experience_to_delete': professional_experience_to_delete},)    
+
+
+def delete_professional_experience(request, professional_experience_id):
+    if request.method == 'POST':
+        professional_experience_to_delete = get_object_or_404(ProfessionalExperience, pk=professional_experience_id)
+        professional_experience_to_delete.delete()
+        return redirect('professional_experiences')
+#====================================================================================================================================================================
+#FORMAÇÃO ACADEMICA
+def academic_formations(request):
+    all_academic_formations = AcademicFormation.objects.all()
+    template = loader.get_template("recrutamento/academic_formations/academic_formations.html")
+    context = {
+        "all_academic_formations": all_academic_formations,
+    }
+    return HttpResponse(template.render(context, request))
+
+def single_academic_formation(request, academic_formation_id):
+    specific_academic_formation = get_object_or_404(AcademicFormation, pk=academic_formation_id)
+    return render(request, "recrutamento/academic_formations/singleacademicformation.html", {"specific_academic_formation": specific_academic_formation})
+
+def post_academic_formation(request):
+    if request.method == 'POST':
+        form = FormularioAcademicFormation(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Formação acadêmica registrada com sucesso!")
+    else:
+        form = FormularioAcademicFormation()
+    return render(request, 'recrutamento/academic_formations/add_academic_formation.html', {'form': form})
+
+def update_academic_formation(request, academic_formation_id):
+    academic_formation = get_object_or_404(AcademicFormation, pk=academic_formation_id)
+    if request.method == 'POST':
+        form = FormularioAcademicFormation(request.POST, instance=academic_formation)
+        if form.is_valid():
+            form.save()
+            return redirect('academic_formations')
+    else:
+        form = FormularioAcademicFormation(instance=academic_formation)
+    return render(request, "recrutamento/academic_formations/edit_academic_formation.html", {'form': form, 'academic_formation': academic_formation})
+
+def confirm_delete_academic_formation(request, academic_formation_id):
+    academic_formation_to_delete = get_object_or_404(AcademicFormation, pk=academic_formation_id)
+
+    return render(request, 'recrutamento/academic_formations/confirm_delete_academic_formation.html', {'academic_formation_to_delete': academic_formation_to_delete},)
+
+def delete_academic_formation(request, academic_formation_id):
+    if request.method == 'POST':
+        academic_formation_to_delete = get_object_or_404(AcademicFormation, pk=academic_formation_id)
+        academic_formation_to_delete.delete()
+        return redirect('academic_formations')
 #====================================================================================================================================================================
 #CURRICULOS
 #Cria curriculos

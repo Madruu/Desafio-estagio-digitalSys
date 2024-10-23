@@ -8,6 +8,14 @@
             <li>{{ professional_experience.periodo }}</li>
             <li>{{ professional_experience.description }}</li><br>
             <br>
+        <form action="{% url 'update_professional_experience' professional_experience.id %}" method='GET' style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Editar</button>
+        </form>
+        <form action="{% url 'confirm_delete_professional_experience' professional_experience.id %}" method="GET" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Deletar</button>
+        </form>
         {% endfor %}
     </ul>
     {% else %}

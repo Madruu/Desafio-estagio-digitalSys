@@ -1,0 +1,9 @@
+{% if professional_experience_to_delete %}
+<h1>Confirmar Exclusão</h1>
+    <p>Você tem certeza que deseja excluir esta experiência profissional?</p>
+    
+    <form action="{% url 'delete_professional_experience' professional_experience_to_delete.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Sim, deletar</button>
+    </form>
+{%endif%}

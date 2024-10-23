@@ -1,0 +1,9 @@
+{% if academic_formation_to_delete %}
+<h1>Confirmar Exclusão</h1>
+    <p>Você tem certeza que deseja excluir este arquivo de formação academica?</p>
+    
+    <form action="{% url 'delete_academic_formation' academic_formation_to_delete.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Sim, deletar</button>
+    </form>
+{%endif%}

@@ -1,0 +1,22 @@
+{% if all_academic_formations %}
+    <h1>All academic formation informations</h1>
+    <ul>
+        {% for academic_formation in all_academic_formations %}
+            <h2>Informações de formação academica</h2>
+            <li>{{ academic_formation.institution }}</li>
+            <li>{{ academic_formation.curse }}</li>
+            <li>{{ academic_formation.stage }}</li>
+            <br>
+            <form action="{% url 'update_academic_formation' academic_formation.id %}" method='GET' style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Editar</button>
+            </form>
+            <form action="{% url 'confirm_delete_academic_formation' academic_formation.id %}" method="GET" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Deletar</button>
+            </form>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No professional experiences available.</p>
+{% endif %}

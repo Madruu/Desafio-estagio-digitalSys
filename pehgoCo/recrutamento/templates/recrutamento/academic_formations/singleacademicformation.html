@@ -1,0 +1,14 @@
+{% if specific_academic_formation %}
+    <h1>Formações academicas encontradas:</h1>
+    <h1>Searched candidate:</h1>
+    <ul>
+        <h2>Informações de formação academica de  {{candidate.first_name}} {{candidate.last_name}}: </h2>
+            
+        <li>{{ specific_academic_formation.institution }}</li>
+        <li>{{ specific_academic_formation.curse }}</li>
+        <li>{{ specific_academic_formation.stage }}</li>
+        <br>
+    </ul>
+    {% else %}
+        <p>Este arquivo de formação academica não existe.</p>
+{% endif %}
