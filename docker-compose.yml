@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    volumes:
+      - ./pehgoCo:/app  # Monta o código local para o contêiner
+    ports:
+      - "8000:8000"  # Mapeia a porta 8000 do contêiner para a porta 8000 da máquina host
+    environment:
+      - PYTHONUNBUFFERED=1  # Para evitar que o Python bufferize a saída
