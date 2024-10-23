@@ -1,0 +1,21 @@
+{% if specific_contact %}
+    <h1>Searched candidate:</h1>
+    <ul>
+        <h2>Informações pessoais de {{candidate.first_name}} {{candidate.last_name}}: </h2>
+            
+        <li>{{ specific_contact.email }}</li>
+        <li>{{ specific_contact.phone_number }}</li>
+        <h3>Endereço:</h3>
+            <ul>
+                <li>{{ specific_contact.rua }}</li>
+                <li>{{ specific_contact.bairro }}</li>
+                <li>{{ specific_contact.cidade }}</li>
+                <li>{{ specific_contact.estado }}</li>
+                <li>{{ specific_contact.cep }}</li>
+                <li>{{ specific_contact.complemento }}</li>
+            </ul>
+        <br>
+    </ul>
+    {% else %}
+        <p>This candidate doesnt exist.</p>
+{% endif %}

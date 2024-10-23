@@ -9,6 +9,7 @@ class PersonalDataSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class ContactSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Contact
         fields = '__all__'

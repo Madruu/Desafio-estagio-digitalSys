@@ -1,0 +1,34 @@
+<!--Try to find the candidates-->
+{% if all_contacts %}
+    <h1>All contacts</h1>
+    <ul>
+        {% for contato in all_contacts %}
+            <li>{{ contato.email }}</li>
+            <li>{{ contato.phone_number }}</li>
+            <h3>Endereço:</h3>
+                <ul>
+                <li>{{ contato.rua }}</li>
+                <li>{{ contato.bairro }}</li>
+                <li>{{ contato.cidade }}</li>
+                <li>{{ contato.estado }}</li>
+                <li>{{ contato.cep }}</li>
+                <li>{{ contato.complemento }}</li>
+            </ul>
+            <br>
+        
+        <form action="{% url 'update_contact' contato.id %}" method='GET' style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Editar</button>
+        </form>
+        <form action="{% url 'confirm_delete_contact' contato.id %}" method="GET" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Deletar</button>
+        </form>
+        <br>
+        <br>
+        <br>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No contacts available.</p>
+{% endif %}

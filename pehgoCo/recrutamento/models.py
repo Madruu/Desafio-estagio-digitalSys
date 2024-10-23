@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class PersonalData(models.Model):
@@ -14,7 +15,8 @@ class PersonalData(models.Model):
 
 class Contact(models.Model):
     email = models.EmailField()
-    phone_number = models.CharField(max_length=15)
+    #phone_number = models.CharField(max_length=15)
+    phone_number = PhoneNumberField(blank=True)
     #Endereço
     rua = models.CharField(max_length=200)
     bairro = models.CharField(max_length=200)

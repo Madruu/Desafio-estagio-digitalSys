@@ -1,5 +1,6 @@
 from django import forms
 from .models import PersonalData, Contact, ProfessionalExperience, AcademicFormation, Curriculo
+from phonenumber_field.formfields import PhoneNumberField
 
 class FormularioPersonalData(forms.ModelForm):
     birth_date = forms.DateField(
@@ -11,6 +12,7 @@ class FormularioPersonalData(forms.ModelForm):
         fields = ['first_name', 'last_name', 'birth_date', 'personal_doc']
 
 class FormularioContato(forms.ModelForm):
+    phone_number = PhoneNumberField(region="BR")
     class Meta:
         model = Contact
         fields = ['email', 'phone_number', 'rua', 'bairro', 'cidade', 'estado', 'cep', 'complemento']

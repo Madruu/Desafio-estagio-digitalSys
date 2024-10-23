@@ -1,0 +1,14 @@
+{% if specific_professional_experience %}
+    <h1>Searched candidate:</h1>
+    <ul>
+        <h2>Informações pessoais de {{candidate.first_name}} {{candidate.last_name}}: </h2>
+            
+        <li>{{ specific_professional_experience.cargo }}</li>
+        <li>{{ specific_professional_experience.empresa }}</li>
+        <li>{{ specific_professional_experience.periodo }}</li>
+        <li>{{ specific_professional_experience.description }}</li>
+        <br>
+    </ul>
+    {% else %}
+        <p>Este arquivo de experiencia profissional não existe.</p>
+{% endif %}

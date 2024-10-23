@@ -1,0 +1,15 @@
+{% if all_professional_experiences %}
+    <h1>All professional experiences</h1>
+    <ul>
+        {% for professional_experience in all_professional_experiences %}
+            <h2>Informações de experiencia profissional</h2>
+            <li>{{ professional_experience.cargo }}</li>
+            <li>{{ professional_experience.empresa }}</li>
+            <li>{{ professional_experience.periodo }}</li>
+            <li>{{ professional_experience.description }}</li><br>
+            <br>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No professional experiences available.</p>
+{% endif %}
