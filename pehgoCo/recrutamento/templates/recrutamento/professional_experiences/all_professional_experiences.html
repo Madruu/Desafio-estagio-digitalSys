@@ -1,6 +1,6 @@
 {% if all_professional_experiences %}
-    <h1>All professional experiences</h1>
     <ul>
+        <h1>Todas experiências profissionais</h1>
         {% for professional_experience in all_professional_experiences %}
             <h2>Informações de experiencia profissional</h2>
             <li>{{ professional_experience.cargo }}</li>
@@ -16,6 +16,53 @@
             {% csrf_token %}
             <button type="submit">Deletar</button>
         </form>
+        <style>
+            .titulo_pagina{
+                padding-top:20px;
+                margin-top:20px;
+                color: white;
+                font-size: 30px;
+            }
+            h2 {
+                color: white;
+                font-size: 20px;
+            }
+            h1{
+                padding-top:20px;
+                color: #825fe;
+                font-size: 30px;
+            }
+            ul {
+                margin-bottom:20px;
+                color: lightblue;
+                font-family: 'Pixelify Sans', sans-serif;
+                background-color: #2f2562;
+                border-radius: 20px;
+                list-style-type: none;
+            }
+            li{
+                color: lightblue;
+                list-style-type: circle;
+            }
+    
+            button{
+                position: relative;
+                bottom:5px;
+                font-family: 'Pixelify Sans', sans-serif;
+                background-color: #4d4ef8;
+                color: white;
+                padding: 14px 20px;
+                border: none;
+                cursor: pointer;
+                width: 200px;
+                height: 50px;
+                border-radius: 20px;
+                padding-bottom:20px;
+            }
+            p{
+                color: lightblue;
+            }
+        </style>
         {% endfor %}
     </ul>
     {% else %}

@@ -1,7 +1,8 @@
-{% if curriculos %}
+<!--{% if curriculos %}
 
-    <h1>Curriculos:</h1>
-    <ul>
+<ul>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <h1 class="titulo_pagina">Curriculos:</h1>
         {% for curriculo in curriculos %}
         <h1>Curriculo de {{curriculo.curr_personal_data.first_name}} {{curriculo.curr_personal_data.last_name}} </h1>
         <h2>Dados pessoais:</h2>
@@ -46,6 +47,220 @@
         </form>
         {% endfor %}
     </ul>
+    <style>
+        .titulo_pagina{
+            padding-top:20px;
+            margin-top:20px;
+            color: white;
+            font-size: 30px;
+        }
+        h2 {
+            color: white;
+            font-size: 20px;
+        }
+        h1{
+            color: #825fe;
+            font-size: 30px;
+        }
+        ul {
+            margin-bottom:20px;
+            color: lightblue;
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #2f2562;
+            border-radius: 20px;
+            list-style-type: none;
+        }
+        li{
+            color: lightblue;
+            list-style-type: circle;
+        }
+
+        button{
+            position: relative;
+            bottom:5px;
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #4d4ef8;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+            padding-bottom:20px;
+        }
+        form {
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #2f2562;
+            width: 400px;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        p{
+            color: lightblue;
+        }
+    </style>
     {% else %}
         <p>No corriculums available.</p>
-{% endif %}
+{% endif %}-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Document</title>
+</head>
+<body>
+    <div class="rectangle_1"></div>
+    {% if curriculos %}
+
+    <ul>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+            <h1 class="titulo_pagina">Curriculos:</h1>
+            {% for curriculo in curriculos %}
+            <h1>Curriculo de {{curriculo.curr_personal_data.first_name}} {{curriculo.curr_personal_data.last_name}} </h1>
+            <h2>Dados pessoais:</h2>
+            <li>{{ curriculo.curr_personal_data.first_name }}</li>
+            <li>{{ curriculo.curr_personal_data.last_name }}</li>
+            <li>{{ curriculo.curr_personal_data.birth_date }}</li>
+            <li>{{ curriculo.curr_personal_data.personal_doc }}</li>
+    
+            <h2>Informações de contato:</h2>
+            <li>{{ curriculo.curr_contact.email }}</li>
+            <li>{{ curriculo.curr_contact.phone_number }}</li>
+            <h3>Endereço:</h3>
+            <ul class="ul_endereco">
+                <li>{{ curriculo.curr_contact.rua }}</li>
+                <li>{{ curriculo.curr_contact.bairro }}</li>
+                <li>{{ curriculo.curr_contact.cidade }}</li>
+                <li>{{ curriculo.curr_contact.estado }}</li>
+                <li>{{ curriculo.curr_contact.cep }}</li>
+                <li>{{ curriculo.curr_contact.complemento }}</li>
+            </ul>
+    
+            <h2>Experiência profissional:</h2>
+            <li>{{ curriculo.curr_professional_experience.cargo }}</li>
+            <li>{{ curriculo.curr_professional_experience.empresa }}</li>
+            <li>{{ curriculo.curr_professional_experience.periodo }}</li>
+            <li>{{ curriculo.curr_professional_experience.description }}</li>
+    
+            <h2>Formação acadêmica:</h2>
+            <li>{{ curriculo.curr_academic_formation.institution }}</li>
+            <li>{{ curriculo.curr_academic_formation.curse }}</li>
+            <li>{{ curriculo.curr_academic_formation.stage }}</li><br>
+                
+    
+            <form action="{% url 'update_curriculum' curriculo.id %}" method='GET' style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Editar</button>
+            </form>
+    
+            <form action="{% url 'confirm_delete_curriculum' curriculo.id %}" method="GET" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Deletar</button>
+            </form>
+            {% endfor %}
+        </ul>
+        <style>
+            body{
+                background-color: #171231;
+                font-family: 'Pixelify Sans', sans-serif;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 3;
+            }
+            h3{
+                color: white;
+                z-index: 3;
+            }
+            .titulo_pagina{
+                position: relative;
+                top:0px;
+                display:flex;
+                color: white;
+                font-size: 30px;
+                z-index: 3;
+            }
+            h2 {
+                color: white;
+                font-size: 20px;
+                z-index: 3;
+            }
+            h1{
+                position: relative;
+                color: #825fe;
+                font-size: 30px;
+                z-index: 3;
+            }
+            ul {
+                font-family: 'Pixelify Sans', sans-serif;
+                background-color: #2f2562;
+                position: relative;
+                left:0px;
+                top:400px;
+                height:1000px
+                width: 1000px;
+                border-radius: 20px;
+                z-index: 3;
+            }
+            .ul_endereco{
+                font-family: 'Pixelify Sans', sans-serif;
+                position: relative;
+                top: 0px;
+                background-color: #2f2562;
+                width: 800px;
+                border-radius: 20px;
+                z-index: 3;
+            }
+            li{
+                color: lightblue;
+                list-style-type: circle;
+                z-index: 3;
+            }
+    
+            button{
+                position: relative;
+                bottom:5px;
+                font-family: 'Pixelify Sans', sans-serif;
+                background-color: #4d4ef8;
+                color: white;
+                padding: 14px 20px;
+                border: none;
+                cursor: pointer;
+                width: 200px;
+                height: 50px;
+                border-radius: 20px;
+                padding-bottom:20px;
+                z-index: 3;
+            }
+            form {
+                font-family: 'Pixelify Sans', sans-serif;
+                background-color: #2f2562;
+                width: 400px;
+                padding: 10px;
+                border-radius: 20px;
+
+            }
+            p{
+                color: lightblue;
+            }
+            .rectangle_1 {
+                position: absolute; /* Altera para absolute */
+                display: flex;
+                width: 2066px;
+                height: 100%;
+                background-color: #211A47;
+                transform: translate(-50%, -50%) rotate(-45deg);
+                top: 30%; /* Ajuste conforme necessário */
+                left:20%; /* Ajuste conforme necessário */
+                z-index: 0; /* Adicione se precisar garantir que fique acima de outros elementos */
+            }
+        </style>
+        {% else %}
+            <p>No corriculums available.</p>
+    {% endif %}
+</body>
+</html>

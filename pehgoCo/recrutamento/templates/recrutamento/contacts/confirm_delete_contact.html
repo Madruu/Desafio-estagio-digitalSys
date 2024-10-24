@@ -4,6 +4,33 @@
     
     <form action="{% url 'delete_contact' contact_to_delete.id %}" method="POST">
         {% csrf_token %}
-        <button type="submit">Sim, deletar</button>
+        <button type="submit" class="submit_button">Sim, deletar</button>
     </form>
+    <style>
+        h1 {
+            color: white;
+            font-size: 20px;
+        }
+        .submit_button{
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #4d4ef8;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+        }
+        form {
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #2f2562;
+            width: 400px;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        p{
+            color: lightblue;
+        }
+    </style>
 {%endif%}

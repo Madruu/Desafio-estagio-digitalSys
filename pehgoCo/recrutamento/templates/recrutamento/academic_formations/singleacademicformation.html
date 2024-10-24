@@ -1,7 +1,7 @@
 {% if specific_academic_formation %}
-    <h1>Formações academicas encontradas:</h1>
-    <h1>Searched candidate:</h1>
     <ul>
+        <h1 class="titulo_pagina">Formações academicas encontradas:</h1>
+        <h1>Formação acadêmica encontrada:</h1>
         <h2>Informações de formação academica de  {{candidate.first_name}} {{candidate.last_name}}: </h2>
             
         <li>{{ specific_academic_formation.institution }}</li>
@@ -9,6 +9,36 @@
         <li>{{ specific_academic_formation.stage }}</li>
         <br>
     </ul>
+    <style>
+        .titulo_pagina{
+            padding-top:20px;
+            margin-top:20px;
+            color: white;
+            font-size: 30px;
+        }
+        h1{
+            padding-top:20px;
+            color: white;
+            font-size: 30px;
+        }
+        h3{
+            padding-top:20px;
+            color: white;
+        }
+        ul {
+            padding-left:50px;
+            padding-bottom:20px;
+            color: lightblue;
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #2f2562;
+            border-radius: 20px;
+            list-style-type: none;
+        }
+        li{
+            color: lightblue;
+            list-style-type: circle;
+        }
+    </style>
     {% else %}
         <p>Este arquivo de formação academica não existe.</p>
 {% endif %}

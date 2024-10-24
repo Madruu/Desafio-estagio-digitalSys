@@ -1,6 +1,55 @@
 <form method="post">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     {% csrf_token %}
     <h2>Informações de contato:</h2>
     {{ form.as_p }}
     <button type="submit">Cadastrar Informações de Contato</button>
+    <style>
+        .titulo_pagina{
+            padding-top:20px;
+            margin-top:20px;
+            color: white;
+            font-size: 30px;
+        }
+        h2 {
+            color: white;
+            font-size: 20px;
+        }
+        h1{
+            color: #825fe;
+            font-size: 30px;
+        }
+
+        button{
+            position: relative;
+            left:40px;
+            bottom:5px;
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #4d4ef8;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 280px;
+            height: 50px;
+            border-radius: 20px;
+            padding-bottom:15px;
+        }
+        form {
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #2f2562;
+            width: 400px;
+            padding: 10px;
+            border-radius: 20px;
+        }
+        p{
+            color: lightblue;
+        }
+        input{
+            margin: 5px;
+            padding: 5px;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
 </form>

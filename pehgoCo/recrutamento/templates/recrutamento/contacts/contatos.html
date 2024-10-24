@@ -1,7 +1,8 @@
 <!--Try to find the candidates-->
 {% if all_contacts %}
-    <h1>All contacts</h1>
-    <ul>
+<ul>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <h1 class="titulo_pagina">All contacts</h1>
         {% for contato in all_contacts %}
             <li>{{ contato.email }}</li>
             <li>{{ contato.phone_number }}</li>
@@ -28,6 +29,52 @@
         <br>
         <br>
         {% endfor %}
+    <style>
+        .titulo_pagina{
+            padding-top:20px;
+            margin-top:20px;
+            color: white;
+            font-size: 30px;
+        }
+        h2 {
+            color: white;
+            font-size: 20px;
+        }
+        h1{
+            color: #825fe;
+            font-size: 30px;
+        }
+        ul {
+            margin-bottom:20px;
+            color: lightblue;
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #2f2562;
+            border-radius: 20px;
+            list-style-type: none;
+        }
+        li{
+            color: lightblue;
+            list-style-type: circle;
+        }
+
+        button{
+            position: relative;
+            bottom:5px;
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #4d4ef8;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+            padding-bottom:20px;
+        }
+        p{
+            color: lightblue;
+        }
+    </style>
     </ul>
     {% else %}
         <p>No contacts available.</p>
