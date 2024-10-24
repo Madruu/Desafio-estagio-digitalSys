@@ -1,39 +1,85 @@
-<form method="post">
-    {% csrf_token %}
-    <h2>Informações de contato:</h2>
-    {{ form.as_p }}
-    <button type="submit" class="submit_button">Salvar Alterações</button>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Editar Contato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <style>
+        body {
+            background-color: #171231;
+            font-family: 'Pixelify Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 40vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         h2 {
+            position: relative;
             color: white;
             font-size: 20px;
+            z-index: 10;
         }
-        .submit_button{
+        .submit_button {
+            position: relative;
             font-family: 'Pixelify Sans', sans-serif;
             background-color: #4d4ef8;
             color: white;
+            left: 100px;
             padding: 14px 20px;
             border: none;
             cursor: pointer;
             width: 200px;
             height: 50px;
             border-radius: 20px;
+            z-index: 10;
         }
         form {
+            position: relative;
             font-family: 'Pixelify Sans', sans-serif;
             background-color: #2f2562;
+            top: 250px;
             width: 400px;
             padding: 10px;
+            padding-bottom: 20px;
             border-radius: 20px;
+            z-index: 3;
         }
-        p{
+        p {
+            position: relative;
             color: lightblue;
+            z-index: 10;
         }
-        input{
+        input {
+            position: relative;
             margin: 5px;
             padding: 5px;
             border: none;
             border-radius: 10px;
+            z-index: 10;
+        }
+        .rectangle_1 {
+            position: absolute;
+            display: flex;
+            left: 200px;
+            bottom: 200px;
+            width: 2066px;
+            height: 100%;
+            background-color: #211A47;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            bottom: 0;
+            z-index: 3;
         }
     </style>
-</form>
+</head>
+<body>
+    <div class="rectangle_1"></div>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Informações de contato:</h2>
+        {{ form.as_p }}
+        <button type="submit" class="submit_button">Salvar Alterações</button>
+    </form>
+</body>
+</html>

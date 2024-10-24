@@ -1,70 +1,107 @@
-{% if all_professional_experiences %}
-    <ul>
-        <h1>Todas experiências profissionais</h1>
-        {% for professional_experience in all_professional_experiences %}
-            <h2>Informações de experiencia profissional</h2>
-            <li>{{ professional_experience.cargo }}</li>
-            <li>{{ professional_experience.empresa }}</li>
-            <li>{{ professional_experience.periodo }}</li>
-            <li>{{ professional_experience.description }}</li><br>
-            <br>
-        <form action="{% url 'update_professional_experience' professional_experience.id %}" method='GET' style="display:inline;">
-            {% csrf_token %}
-            <button type="submit">Editar</button>
-        </form>
-        <form action="{% url 'confirm_delete_professional_experience' professional_experience.id %}" method="GET" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit">Deletar</button>
-        </form>
-        <style>
-            .titulo_pagina{
-                padding-top:20px;
-                margin-top:20px;
-                color: white;
-                font-size: 30px;
-            }
-            h2 {
-                color: white;
-                font-size: 20px;
-            }
-            h1{
-                padding-top:20px;
-                color: #825fe;
-                font-size: 30px;
-            }
-            ul {
-                margin-bottom:20px;
-                color: lightblue;
-                font-family: 'Pixelify Sans', sans-serif;
-                background-color: #2f2562;
-                border-radius: 20px;
-                list-style-type: none;
-            }
-            li{
-                color: lightblue;
-                list-style-type: circle;
-            }
-    
-            button{
-                position: relative;
-                bottom:5px;
-                font-family: 'Pixelify Sans', sans-serif;
-                background-color: #4d4ef8;
-                color: white;
-                padding: 14px 20px;
-                border: none;
-                cursor: pointer;
-                width: 200px;
-                height: 50px;
-                border-radius: 20px;
-                padding-bottom:20px;
-            }
-            p{
-                color: lightblue;
-            }
-        </style>
-        {% endfor %}
-    </ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Todas Experiências Profissionais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #171231;
+            font-family: 'Pixelify Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; /* Align items in a column */
+            align-items: center; /* Center align the content */
+            z-index: 3;
+        }
+        h1 {
+            color: #825fe;
+            font-size: 30px;
+            margin: 20px 0; /* Space above and below the title */
+            z-index: 3;
+            text-align: center; /* Center the title */
+        }
+        h2 {
+            color: white;
+            font-size: 20px;
+            margin: 10px 0;
+            z-index: 3;
+        }
+        ul {
+            background-color: #2f2562;
+            border-radius: 20px;
+            padding: 20px;
+            list-style-type: none;
+            width: 600px; /* Adjusted width for better appearance */
+            max-width: 90%; /* Ensures responsiveness */
+            z-index: 3;
+            margin: 0; /* Remove default margin */
+        }
+        li {
+            color: lightblue;
+            margin-bottom: 15px; /* Added space between items */
+            z-index: 3;
+        }
+        .button-container {
+            display: flex; /* Use flexbox to align buttons side by side */
+            justify-content: space-between; /* Space buttons evenly */
+            margin-top: 10px; /* Space above button container */
+        }
+        button {
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #4d4ef8;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+            z-index: 3;
+        }
+        .rectangle_1 {
+            position: absolute;
+            width: 2066px;
+            height: 100%;
+            background-color: #211A47;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            top: 30%; /* Adjust as necessary */
+            left: 20%; /* Adjust as necessary */
+            z-index: 0; /* Ensure it stays in the background */
+        }
+    </style>
+</head>
+<body>
+    <div class="rectangle_1"></div>
+    <h1>Todas Experiências Profissionais</h1>
+    {% if all_professional_experiences %}
+        <ul>
+            {% for professional_experience in all_professional_experiences %}
+                <li>
+                    <h2>Informações de Experiência Profissional</h2>
+                    <strong>Cargo:</strong> {{ professional_experience.cargo }}<br>
+                    <strong>Empresa:</strong> {{ professional_experience.empresa }}<br>
+                    <strong>Período:</strong> {{ professional_experience.periodo }}<br>
+                    <strong>Descrição:</strong> {{ professional_experience.description }}<br>
+                    <div class="button-container"> <!-- Container for buttons -->
+                        <form action="{% url 'update_professional_experience' professional_experience.id %}" method='GET' style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Editar</button>
+                        </form>
+                        <form action="{% url 'confirm_delete_professional_experience' professional_experience.id %}" method="GET" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Deletar</button>
+                        </form>
+                    </div>
+                </li>
+                <br>
+            {% endfor %}
+            
+        </ul>
     {% else %}
         <p>No professional experiences available.</p>
-{% endif %}
+    {% endif %}
+</body>
+</html>
