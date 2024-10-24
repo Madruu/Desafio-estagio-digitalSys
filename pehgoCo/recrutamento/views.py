@@ -42,6 +42,23 @@ def delete_candidate(request, candidate_id):
     candidate.delete()
     return HttpResponse("Candidato deletado com sucesso!")
 
+def confirm_delete_candidate(request, candidate_id):
+    candidate_to_delete = get_object_or_404(PersonalData, pk=candidate_id)
+    return render(request, 'recrutamento/candidates/confirm_delete_candidate.html', {'candidate_to_delete': candidate_to_delete})
+
+def update_candidate(request, candidate_id):
+    candidate = get_object_or_404(PersonalData, pk=candidate_id)
+
+    if request.method == 'POST':
+        form = FormularioPersonalData(request.POST, instance=candidate)
+        if form.is_valid():
+            form.save()
+            return redirect('candidates')
+
+    else:
+        form = FormularioPersonalData(instance=candidate)
+
+    return render(request, 'recrutamento/candidates/edit_candidate.html', {'form': form, 'candidate': candidate})
 #====================================================================================================================================================================
 #CONTATO
 #Retorna todos os contatos

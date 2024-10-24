@@ -9,6 +9,8 @@ urlpatterns = [
     path("candidates/add/", views.post_candidate, name="post_candidate"),
     path("candidate/<int:candidate_id>", views.single_candidate, name="single_candidate"),
     path("candidate/delete/<int:candidate_id>", views.delete_candidate, name="delete_candidate"),
+    path("candidate/delete/confirm/<int:candidate_id>", views.confirm_delete_candidate, name="confirm_delete_candidate"),
+    path("candidate/edit/<int:candidate_id>", views.update_candidate, name="update_candidate"),
     #Contactos
     path("contatos/", views.contacts, name="contacts"),
     path("contato/<int:contact_id>", views.single_contact, name="single_contact"),
