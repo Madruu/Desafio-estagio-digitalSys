@@ -1,4 +1,4 @@
-"""from django.test import TestCase
+from django.test import TestCase
 from .models import PersonalData, Contact, ProfessionalExperience, AcademicFormation
 
 # Create your tests here.
@@ -45,4 +45,4 @@ class AcademicFormationTest(TestCase):
             curse='ADS',
             stage=5
         )
-        self.assertEqual(str(academic_formation), 'Fatec ADS 1')"""
+        self.assertEqual(str(academic_formation), 'Fatec ADS 1')

@@ -9,6 +9,8 @@ from django.contrib import messages
 # Página inicial
 def index(request):
     return HttpResponse("Este será o sistema de candidatos")
+def favicon_view(request):
+    return HttpResponse(status=204)
 
 #====================================================================================================================================================================
 #CANDIDATOS

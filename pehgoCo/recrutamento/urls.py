@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
+     path('favicon.ico', views.favicon_view, name='favicon_view'),
     #Candidatos
     path("", views.index, name="index"),
     path("candidates/", views.candidates, name="candidates"),
