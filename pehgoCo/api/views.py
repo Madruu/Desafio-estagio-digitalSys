@@ -1,23 +1,71 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from recrutamento.models import Curriculo, PersonalData, Contact, ProfessionalExperience, AcademicFormation
 from .serializers import PersonalDataSerializer, ContactSerializer, ProfessionalExperienceSerializer, AcademicFormationSerializer, CurriculoSerializer
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import authenticate
 
 #====================================================================================================================================================================
 # PERSONAL DATA VIEWS
 def index(request):
     return HttpResponse("Este será o sistema de candidatos usando api")
 
+
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
+def authenticate(request, format=None):
+    content ={
+        'user': str(request.user),
+        'auth': str(request.auth),
+    }
+    
+    return Response(content)
+"""@api_view(['POST'])
+def authenticate_user(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    user = authenticate(request, username=username, password=password)
+    
+    if user:
+        token, created = Token.objects.get_or_create(user=user)
+        with open('token.txt', 'w') as file:
+            file.write(token.key)
+        return Response({'token': token.key})
+    else:
+        return Response({'error': 'Credenciais inválidas'}, status=status.HTTP_400_BAD_REQUEST)
+
+def get_stored_token():
+    try:
+        with open('token.txt', 'r') as file:
+            return file.read().strip()
+    except FileNotFoundError:
+        return None"""
+
+
 @api_view(['GET'])
 def get_data_personal_data(request):
     personal_datas = PersonalData.objects.all()
     serializer = PersonalDataSerializer(personal_datas, many=True)
     return Response(serializer.data)
+"""@api_view(['GET'])
+def get_data_personal_data(request):
+    token = get_stored_token()
+    print(f"Token: {token}")
+    
+    if token:
+        # Processa a solicitação normalmente
+        personal_datas = PersonalData.objects.all()
+        serializer = PersonalDataSerializer(personal_datas, many=True)
+        return Response(serializer.data)
+    else:
+        # Retorna um erro se o token não for encontrado
+        return Response({"error": "Token não encontrado. Autentique-se novamente."}, status=401)"""
 
 @api_view(['GET'])
 def get_data_single_personal_data(request, id):
