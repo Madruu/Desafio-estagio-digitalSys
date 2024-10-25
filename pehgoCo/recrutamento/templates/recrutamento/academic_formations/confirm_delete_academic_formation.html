@@ -1,9 +1,79 @@
-{% if academic_formation_to_delete %}
-<h1>Confirmar Exclusão</h1>
-    <p>Você tem certeza que deseja excluir este arquivo de formação academica?</p>
-    
-    <form action="{% url 'delete_academic_formation' academic_formation_to_delete.id %}" method="POST">
-        {% csrf_token %}
-        <button type="submit">Sim, deletar</button>
-    </form>
-{%endif%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Confirmar Exclusão</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #171231;
+            font-family: 'Pixelify Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            z-index: 2;
+        }
+        h1 {
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 10px; /* Espaçamento abaixo do título */
+            z-index: 2;
+        }
+        p {
+            color: lightblue;
+            text-align: center;
+            margin-bottom: 20px; /* Espaçamento abaixo do parágrafo */
+            z-index: 2;
+        }
+        .submit_button {
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #4d4ef8;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+            display: block;
+            margin: 0 auto; /* Centraliza o botão */
+            z-index: 2;
+        }
+        form {
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: #2f2562;
+            width: 400px;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 2;
+        }
+        .rectangle_1 {
+            position: absolute;
+            width: 2066px;
+            height: 100%;
+            background-color: #211A47;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            top: 30%;
+            left: 20%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="rectangle_1"></div>
+    {% if academic_formation_to_delete %}
+        <form action="{% url 'delete_academic_formation' academic_formation_to_delete.id %}" method="POST">
+            <h1>Confirmar Exclusão</h1>
+            <p>Você tem certeza que deseja excluir esta formação acadêmica?</p>
+            
+            {% csrf_token %}
+            <button type="submit" class="submit_button">Sim, deletar</button>
+        </form>
+    {% endif %}
+</body>
+</html>

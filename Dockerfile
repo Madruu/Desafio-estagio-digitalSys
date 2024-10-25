@@ -10,7 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copie todo o código da aplicação para o contêiner
 COPY pehgoCo/ ./
-
 # Exponha a porta que o Django usará
 EXPOSE 8000
 
