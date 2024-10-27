@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Document</title>
+</head>
+<body>
+    <div class="rectangle_1"></div>
+    {% if specific_academic_formation %}
+        <ul>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">   
+            <h1>Searched candidate:</h1>
+            <h2>Informações da experiência profissional de {{candidate.first_name}} {{candidate.last_name}}: </h2>
+                
+            <li>{{ specific_academic_formation.institution }}</li>
+            <li>{{ specific_academic_formation.curse }}</li>
+            <li>{{ specific_academic_formation.stage }}</li>
+            <br>
+        </ul>
+        <style>
+            body{
+                background-color: #171231;
+                font-family: 'Inter', sans-serif;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .titulo_pagina{
+                padding-top:20px;
+                margin-top:20px;
+                color: white;
+                font-size: 30px;
+            }
+            h2 {
+                color: white;
+                font-size: 20px;
+            }
+            h1{
+                color: lightblue;
+                font-size: 30px;
+            }
+            ul {
+                position: relative;
+                font-family: 'Inter', sans-serif;
+                background-color: #2f2562;
+                right:800px;
+                width: 500px;
+                height: 350px;
+                
+                border-radius: 20px;
+                z-index: 3;
+            }
+            li{
+                color: lightblue;
+                list-style-type: circle;
+            }
+            .rectangle_1{
+                position: relative;
+                display: flex;
+                left: 200px;
+                bottom: 200px;
+                width: 2066px;
+                height: 100%;
+                background-color: #211A47;
+                transform: translate(-50%, -50%) rotate(-45deg);
+                bottom:0;
+                z-index: 3;
+            }
+    
+            button{
+                position: relative;
+                bottom:5px;
+                font-family: 'Inter', sans-serif;
+                background-color: #4d4ef8;
+                color: white;
+                padding: 14px 20px;
+                border: none;
+                cursor: pointer;
+                width: 200px;
+                height: 50px;
+                border-radius: 20px;
+                padding-bottom:20px;
+            }
+            form {
+                font-family: 'Inter', sans-serif;
+                background-color: #2f2562;
+                width: 400px;
+                padding: 10px;
+                border-radius: 20px;
+            }
+            p{
+                color: lightblue;
+            }
+        </style>
+        {% else %}
+            <p>Este arquivo de experiencia profissional não existe.</p>
+    {% endif %}
+</body>
+</html>

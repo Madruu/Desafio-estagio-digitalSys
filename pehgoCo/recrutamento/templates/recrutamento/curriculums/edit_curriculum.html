@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Document</title>
+</head>
+<body>
+    <div class="rectangle_1"></div>
+    <form method="post">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        {% csrf_token %}
+        
+        <h2>Dados Pessoais</h2>
+        {{ personal_data_form.as_p }}
+        <br>
+    
+        <h2>Contato</h2>
+        {{ contact_form.as_p }}
+        <br>
+    
+        <h2>Experiência Profissional</h2>
+        {{ professional_experience_form.as_p }}
+        <br>
+    
+        <h2>Formação Acadêmica</h2>
+        {{ academic_formation_form.as_p }}
+        <br>
+    
+        <button type="submit" class="submit_button">Salvar Alterações</button>
+        <style>
+            body{
+                background-color: #171231;
+                font-family: 'Inter', sans-serif;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            h2 {
+                position: relative;
+                color: white;
+                font-size: 20px;
+                z-index: 10;
+            }
+            .submit_button{
+                position: relative;
+                font-family: 'Inter', sans-serif;
+                background-color: #4d4ef8;
+                color: white;
+                left: 50px;
+                padding: 14px 20px;
+                border: none;
+                cursor: pointer;
+                width: 200px;
+                height: 50px;
+                border-radius: 20px;
+                z-index: 10;
+            }
+            form {
+                position: relative;
+                font-family: 'Inter', sans-serif;
+                background-color: #2f2562;
+                top: 250px;
+                width: 450px;
+                height: 1350px;
+                padding-left: 80px;
+                border-radius: 20px;
+                z-index: 3;
+            }
+            .rectangle_1{
+                position: absolute;
+                display: flex;
+                left: 200px;
+                bottom: 200px;
+                width: 2066px;
+                height: 100%;
+                background-color: #211A47;
+                transform: translate(-50%, -50%) rotate(-45deg);
+                bottom:0;
+                z-index: 3;
+            }
+            p{
+                position: relative;
+                color: lightblue;
+                z-index: 10;
+            }
+            input{
+                position: relative;
+                margin: 5px;
+                padding: 5px;
+                border: none;
+                border-radius: 10px;
+                z-index: 10;
+            }
+        </style>
+    </form>
+</body>
+</html>

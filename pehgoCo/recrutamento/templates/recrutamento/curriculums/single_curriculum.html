@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<title>Currículo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #171231;
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+    }
+
+    .container {
+        position: relative;
+        width: 1000px;
+        padding: 20px;
+        background-color: #2f2562;
+        border-radius: 20px;
+        z-index: 3;
+    }
+
+    h1 {
+        color: #825fe;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    h2, h3 {
+        color: white;
+        font-size: 22px;
+        margin-top: 20px;
+    }
+
+    ul {
+        padding: 0;
+        list-style: none;
+        margin: 0;
+    }
+
+    li {
+        color: lightblue;
+        list-style-type: circle;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .ul_endereco {
+        padding-left: 40px; /* Indentação maior para endereço */
+        list-style-type: disc; /* Estilo de lista diferente para a sub-seção */
+        margin: 10px 0 0 0;
+    }
+
+    button {
+        margin-top: 20px;
+        font-family: 'Inter', sans-serif;
+        background-color: #4d4ef8;
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        cursor: pointer;
+        width: 200px;
+        height: 50px;
+        border-radius: 20px;
+    }
+
+    .rectangle_1 {
+        position: absolute;
+        width: 2066px;
+        height: 100%;
+        background-color: #211A47;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        top: 50%;
+        left: 50%;
+        z-index: 0;
+    }
+</style>
+</head>
+<body>
+    <div class="rectangle_1"></div>
+    <div class="container">
+        {% if specific_curriculum %}
+        <h1>Currículo de {{ specific_curriculum.curr_personal_data.first_name }} {{ specific_curriculum.curr_personal_data.last_name }}</h1>
+
+        <h2>Dados pessoais:</h2>
+        <ul class="ul_dados_pessoais">
+            <li>Nome: {{ specific_curriculum.curr_personal_data.first_name }} {{ specific_curriculum.curr_personal_data.last_name }}</li>
+            <li>Data de nascimento: {{ specific_curriculum.curr_personal_data.birth_date }}</li>
+            <li>CPF: {{ specific_curriculum.curr_personal_data.personal_doc }}</li>
+        </ul>
+
+        <h2>Informações de contato:</h2>
+        <ul class="ul_contato">
+            <li>E-mail: {{ specific_curriculum.curr_contact.email }}</li>
+            <li>Número de telefone: {{ specific_curriculum.curr_contact.phone_number }}</li>
+        </ul>
+
+        <h3>Endereço:</h3>
+        <ul class="ul_endereco">
+            <li>Rua: {{ specific_curriculum.curr_contact.rua }}</li>
+            <li>Bairro: {{ specific_curriculum.curr_contact.bairro }}</li>
+            <li>Cidade: {{ specific_curriculum.curr_contact.cidade }}</li>
+            <li>Estado: {{ specific_curriculum.curr_contact.estado }}</li>
+            <li>CEP: {{ specific_curriculum.curr_contact.cep }}</li>
+            <li>Complemento: {{ specific_curriculum.curr_contact.complemento }}</li>
+        </ul>
+
+        <h2>Experiência profissional:</h2>
+        <ul class="ul_experiencia_profissional">
+            <li>Cargo: {{ specific_curriculum.curr_professional_experience.cargo }}</li>
+            <li>Empresa: {{ specific_curriculum.curr_professional_experience.empresa }}</li>
+            <li>Período: {{ specific_curriculum.curr_professional_experience.periodo }}</li>
+            <li>Descrição: {{ specific_curriculum.curr_professional_experience.description }}</li>
+        </ul>
+
+        <h2>Formação acadêmica:</h2>
+        <ul class="ul_formacao_academica">
+            <li>Instituição: {{ specific_curriculum.curr_academic_formation.institution }}</li>
+            <li>Curso: {{ specific_curriculum.curr_academic_formation.curse }}</li>
+            <li>Período: {{ specific_curriculum.curr_academic_formation.stage }}</li>
+        </ul>
+        {% else %}
+        <p>Este currículo não existe.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

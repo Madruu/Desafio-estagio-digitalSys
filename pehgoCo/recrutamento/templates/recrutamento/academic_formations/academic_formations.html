@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Todas Experiências Profissionais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #171231;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            z-index: 3;
+        }
+        h1 {
+            color: white;
+            font-size: 30px;
+            margin: 20px 0; 
+            z-index: 3;
+            text-align: center; 
+        }
+        h2 {
+            color: white;
+            font-size: 20px;
+            margin: 10px 0;
+            z-index: 3;
+        }
+        ul {
+            background-color: #2f2562;
+            border-radius: 20px;
+            padding: 20px;
+            list-style-type: none;
+            width: 600px; 
+            max-width: 90%; 
+            z-index: 3;
+            margin: 0; 
+        }
+        li {
+            color: lightblue;
+            margin-bottom: 15px; 
+            z-index: 3;
+        }
+        .button-container {
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 10px; 
+        }
+        button {
+            font-family: 'Inter', sans-serif;
+            background-color: #4d4ef8;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+            z-index: 3;
+        }
+        .rectangle_1 {
+            position: absolute;
+            width: 2066px;
+            height: 100%;
+            background-color: #211A47;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            top: 30%; /* Adjust as necessary */
+            left: 20%; /* Adjust as necessary */
+            z-index: 0; /* Ensure it stays in the background */
+        }
+    </style>
+</head>
+<body>
+    <div class="rectangle_1"></div>
+    <h1>Todos os registros de formação academica:</h1>
+    {% if all_academic_formations %}
+        <ul>
+            {% for academic_formation in all_academic_formations %}
+                <li>
+                    <h2>Informações sobre a formação acadêcica:</h2>
+                    <strong>Instituição:</strong> {{ academic_formation.institution }}<br>
+                    <strong>Curso:</strong> {{ academic_formation.curse }}<br>
+                    <strong>Período:</strong> {{ academic_formation.stage }}<br>
+                    <div class="button-container"> <!-- Container for buttons -->
+                        <form action="{% url 'update_academic_formation' academic_formation.id %}" method='GET' style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Editar</button>
+                        </form>
+                        <form action="{% url 'confirm_delete_academic_formation' academic_formation.id %}" method="GET" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Deletar</button>
+                        </form>
+                    </div>
+                </li>
+                <br>
+            {% endfor %}
+            
+        </ul>
+    {% else %}
+        <p>No professional experiences available.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!--Try to find the candidates-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Todos os Contatos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #171231;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; /* Alinha os itens em coluna */
+            align-items: center; /* Centraliza o conteúdo */
+            z-index: 3;
+        }
+        h1 {
+            color: white;
+            font-size: 30px;
+            margin: 20px 0; /* Espaço acima e abaixo do título */
+            z-index: 3;
+            text-align: center; /* Centraliza o título */
+        }
+        h3 {
+            color: white;
+            font-size: 20px;
+            margin: 10px 0;
+            z-index: 3;
+        }
+        ul {
+            background-color: #2f2562;
+            border-radius: 20px;
+            padding: 20px;
+            list-style-type: none;
+            width: 600px; /* Largura ajustada para melhor aparência */
+            max-width: 90%; /* Garante responsividade */
+            z-index: 3;
+            margin: 0; /* Remove a margem padrão */
+        }
+        li {
+            color: lightblue;
+            margin-bottom: 15px; /* Espaço entre os itens */
+            z-index: 3;
+        }
+        .button-container {
+            display: flex; /* Usar flexbox para alinhar os botões lado a lado */
+            justify-content: space-between; /* Espaça os botões uniformemente */
+            margin-top: 10px; /* Espaço acima do contêiner de botões */
+        }
+        button {
+            font-family: 'Inter', sans-serif;
+            background-color: #4d4ef8;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+            z-index: 3;
+        }
+        .rectangle_1 {
+            position: absolute;
+            width: 2066px;
+            height: 100%;
+            background-color: #211A47;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            top: 30%; /* Ajuste conforme necessário */
+            left: 20%; /* Ajuste conforme necessário */
+            z-index: 0; /* Garantir que fique em segundo plano */
+        }
+    </style>
+</head>
+<body>
+    <div class="rectangle_1"></div>
+    <h1>Todos os Contatos</h1>
+    {% if all_contacts %}
+        <ul>
+            {% for contato in all_contacts %}
+                <li>
+                    <h3>Informações de Contato</h3>
+                    <strong>Email:</strong> {{ contato.email }}<br>
+                    <strong>Telefone:</strong> {{ contato.phone_number }}<br>
+                    <strong>Endereço:</strong>
+                    <ul>
+                        <li>{{ contato.rua }}</li>
+                        <li>{{ contato.bairro }}</li>
+                        <li>{{ contato.cidade }}</li>
+                        <li>{{ contato.estado }}</li>
+                        <li>{{ contato.cep }}</li>
+                        <li>{{ contato.complemento }}</li>
+                    </ul>
+                    <div class="button-container"> <!-- Contêiner para os botões -->
+                        <form action="{% url 'update_contact' contato.id %}" method='GET' style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Editar</button>
+                        </form>
+                        <form action="{% url 'confirm_delete_contact' contato.id %}" method="GET" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Deletar</button>
+                        </form>
+                    </div>
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No contacts available.</p>
+    {% endif %}
+</body>
+</html>
