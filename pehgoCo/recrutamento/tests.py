@@ -3,6 +3,7 @@ from .models import PersonalData, Contact, ProfessionalExperience, AcademicForma
 
 # Create your tests here.
 class PersonalDataTest(TestCase):
+    # Teste de criação de um objeto PersonalData
     def test_personal_data(self):
         personal_data = PersonalData.objects.create(
             first_name='Joao', 
@@ -15,6 +16,7 @@ class PersonalDataTest(TestCase):
         self.assertTrue(isinstance(personal_data, PersonalData))
         
 class ContactTest(TestCase):
+    # Teste de criação de um objeto Contact
     def test_contact(self):
         contact = Contact.objects.create(
             email='vitordtulio@gmail.com',
@@ -29,6 +31,7 @@ class ContactTest(TestCase):
         self.assertEqual(str(contact), 'vitordtulio@gmail.com 14991341794 Rua 1 Bairro 1 Cidade 1 SP 12345678 Casa')
 
 class ProfessionalExperienceTest(TestCase):
+    # Teste de criação de um objeto ProfessionalExperience
     def test_professional_experience(self):
         professional_experience = ProfessionalExperience.objects.create(
             cargo='Desenvolvedor',
@@ -39,6 +42,7 @@ class ProfessionalExperienceTest(TestCase):
         self.assertEqual(str(professional_experience), 'Desenvolvedor DigitalSys 2 Desenvolvimento de sistemas')
 
 class AcademicFormationTest(TestCase):
+    # Teste de criação de um objeto AcademicFormation
     def test_academic_formation(self):
         academic_formation = AcademicFormation.objects.create(
             institution='Fatec',

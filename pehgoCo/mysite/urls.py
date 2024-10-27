@@ -19,6 +19,7 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+# URL patterns for the project
 urlpatterns = [
     path("recrutamento/", include("recrutamento.urls")),
     path("api/", include("api.urls")),

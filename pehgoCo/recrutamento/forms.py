@@ -4,6 +4,7 @@ from phonenumber_field.formfields import PhoneNumberField
 
 class FormularioPersonalData(forms.ModelForm):
     birth_date = forms.DateField(
+        #Formatação da data
         widget=forms.DateInput(format='%d/%m/%Y'),
         input_formats=['%d/%m/%Y']
     )

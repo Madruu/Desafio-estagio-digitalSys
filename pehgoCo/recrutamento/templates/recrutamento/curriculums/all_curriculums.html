@@ -9,7 +9,7 @@
     {% if curriculos %}
 
     <ul>
-        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
             <h1 class="titulo_pagina">Curriculos:</h1>
             {% for curriculo in curriculos %}
             <h1>Curriculo de {{curriculo.curr_personal_data.first_name}} {{curriculo.curr_personal_data.last_name}} </h1>
@@ -58,10 +58,10 @@
         <style>
             body{
                 background-color: #171231;
-                font-family: 'Pixelify Sans', sans-serif;
+                font-family: 'Inter', sans-serif;
                 margin: 0;
                 padding: 0;
-                height: 100vh;
+                height: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -91,18 +91,17 @@
                 z-index: 3;
             }
             ul {
-                font-family: 'Pixelify Sans', sans-serif;
+                font-family: 'Inter', sans-serif;
                 background-color: #2f2562;
                 position: relative;
                 left:0px;
                 top:400px;
-                height:1000px
                 width: 1000px;
                 border-radius: 20px;
                 z-index: 3;
             }
             .ul_endereco{
-                font-family: 'Pixelify Sans', sans-serif;
+                font-family: 'Inter', sans-serif;
                 position: relative;
                 top: 0px;
                 background-color: #2f2562;
@@ -119,7 +118,7 @@
             button{
                 position: relative;
                 bottom:5px;
-                font-family: 'Pixelify Sans', sans-serif;
+                font-family: 'Inter', sans-serif;
                 background-color: #4d4ef8;
                 color: white;
                 padding: 14px 20px;
@@ -132,7 +131,7 @@
                 z-index: 3;
             }
             form {
-                font-family: 'Pixelify Sans', sans-serif;
+                font-family: 'Inter', sans-serif;
                 background-color: #2f2562;
                 width: 400px;
                 padding: 10px;

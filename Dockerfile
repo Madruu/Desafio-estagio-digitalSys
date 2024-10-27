@@ -13,5 +13,7 @@ COPY pehgoCo/ ./
 # Exponha a porta que o Django usará
 EXPOSE 8000
 
+#RUN python manage.py collectstatic --noinput
+
 # Comando para rodar a aplicação
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

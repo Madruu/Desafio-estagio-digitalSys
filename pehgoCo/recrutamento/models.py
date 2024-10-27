@@ -3,7 +3,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.core.exceptions import ValidationError
 
 def validate_email(value):
-    if not value.endswith('.com'):
+    #Validação de email
+    if not value.endswith('.com'):#Verifica se o email termina com .com
         raise ValidationError('O formato do email está incorreto. Por favor, insira um email válido.')
 
 
@@ -18,8 +19,8 @@ class PersonalData(models.Model):
         return f'{self.first_name} {self.last_name} {self.birth_date} {self.personal_doc}'
 
 class Contact(models.Model):
-    email = models.EmailField(validators=[validate_email])
-    phone_number = PhoneNumberField(blank=True)
+    email = models.EmailField(validators=[validate_email])#Validação de email
+    phone_number = PhoneNumberField(blank=True)#validação de telefone
     #Endereço
     rua = models.CharField(max_length=200)
     bairro = models.CharField(max_length=200)

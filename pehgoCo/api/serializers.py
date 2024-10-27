@@ -2,11 +2,11 @@ from rest_framework import serializers
 from recrutamento.models import Curriculo, PersonalData, Contact, ProfessionalExperience, AcademicFormation
 
 class PersonalDataSerializer(serializers.ModelSerializer):
-    birth_date = serializers.DateField(input_formats=["%d/%m/%Y"])
-    
+    birth_date = serializers.DateField(input_formats=["%d/%m/%Y"])#Formatação da data
+
     class Meta:
         model = PersonalData
-        fields = '__all__'
+        fields = '__all__'#Todos os campos
         
 class ContactSerializer(serializers.ModelSerializer):
     
@@ -56,7 +56,7 @@ class CurriculoSerializer(serializers.ModelSerializer):
     
     def update(self, instance, validated_data):
     # Atualiza os dados pessoais
-        personal_data = validated_data.pop('curr_personal_data', None)  # Usando 'curr_personal_data'
+        personal_data = validated_data.pop('curr_personal_data', None)
         if personal_data:
             for attr, value in personal_data.items():
                 setattr(instance.curr_personal_data, attr, value)
