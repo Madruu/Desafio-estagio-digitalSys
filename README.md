@@ -16,12 +16,6 @@ py manage.py runserver
 ```
 * Para a execução a partir de docker:
 ```
-docker build python-django
-```
-```
-docker run -p 8000:8000 python-django
-```
-```
 docker compose --build
 ```
 Para abrir a aplicação utilize [http://127.0.0.1:8000/recrutamento](http://127.0.0.1:8000/recrutamento) para aplicação com templates e [http://127.0.0.1:8000/api](http://127.0.0.1:8000/api) para a aplicação utilizando API.
