@@ -10,6 +10,18 @@ a conteinerização da aplicação.
 * Desafios encontrados durante o desenvolvimento da aplicação: Uso pela primeira vez do framework Django, aprender a utilizar docker de maneira correta, descobrir como relacionar os dados com o curriculo.
 ## Execução da aplicação:
 Para executar o projeto, utilizar:
+* Para a instalação dos requerimentos:
+```
+pip install -r requirements.txt
+```
+* Para a migração de dados:
+```
+py manage.py migrate
+```
+* Para a criação do admin:
+```
+python manage.py createsuperuser
+```
 * Para a execução do servidor local:
 ```
 py manage.py runserver
@@ -20,4 +32,3 @@ docker compose --build
 ```
 Para abrir a aplicação utilize [http://127.0.0.1:8000/recrutamento](http://127.0.0.1:8000/recrutamento) para aplicação com templates e [http://127.0.0.1:8000/api](http://127.0.0.1:8000/api) para a aplicação utilizando API.
 Para acessar a página admin, utilize [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin).
-* dados admin: login: admin. senha: digitalsys2024
